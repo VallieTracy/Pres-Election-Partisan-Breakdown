@@ -17,7 +17,19 @@ def index():
 @app.route("/test")
 def test():
     
-    return testDict[1]["candidate"]
+    i = 0
+    # demCount = 0
+    # while i <= len(testDict):
+    #     if testDict[i]["party"] == "democrat":
+    #         demCount = demCount + testDict[i]["candidatevotes"]
+    #     i += 1
+
+    testList = []
+    while i <= len(testDict):
+        testList.append(testDict[i])
+        i+=1
+
+    return testList
 
 
 if __name__ == "__main__":
