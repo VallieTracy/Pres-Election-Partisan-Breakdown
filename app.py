@@ -16,16 +16,24 @@ def index():
 
 @app.route("/test")
 def test():
+    #return testDict[1]["party"]
     
-    i = 150
-    # demCount = 0
-    # while i <= len(testDict):
-    #     if testDict[i]["party"] == "democrat":
-    #         demCount = demCount + testDict[i]["candidatevotes"]
-    #     i += 1
+    i = 0
+    demCount = 0
+
+    while i <= len(testDict):
+        if (testDict[i]["party"] == "democrat"):
+            demCount = demCount + testDict[i]["candidatevotes"]
+
+        i += 1
 
 
-    return testDict[i]["party"]
+    return str(demCount)
+
+    # if testDict[i]["party"] == "democrat":
+    #     demCount = demCount + testDict[i]["candidatevotes"]
+    # return str(demCount)
+        
 
 
 if __name__ == "__main__":
