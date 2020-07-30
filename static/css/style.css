@@ -2,19 +2,24 @@
     background-color: rgb(179,33,52);
   }
 
-.page-footer{
+.page-footer {
     background-color: rgb(22, 18, 82); 
     color: white; 
     min-height: 40px; 
     font-size: 15px; 
     text-align: center; 
-    position: fixed;
+    /* position: fixed; */
     left: 0;
     bottom: 0;
     width: 100%;
     padding-top: 7px; 
-    }
+    /* border-top: 50px; */
+}
 
 #map{
     font-weight: 900;
+}
+
+.row {
+    margin: 10px;
 }
