@@ -8,7 +8,7 @@
     min-height: 40px; 
     font-size: 15px; 
     text-align: center; 
-    position: initial;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -22,4 +22,7 @@
 
 .row {
     margin: 10px;
+}
+.container{
+    margin-bottom: 100px;
 }
