@@ -7,7 +7,8 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="../images/usa.png"/> 
       </head>
     <body>
 
@@ -35,16 +36,17 @@
         <div class = "container">
             <div class = "row">
                 <div class = "col-md-12">
-                    Yay, USA map goes here
+                  <!-- Calls county map from app.py -->
+                  <iframe src="http://127.0.0.1:8050/counties/" width=1000 height=600>
 
+                    </div>
                 </div>
             </div>
-
         </div>
 
         <!-- Footer Section -->
         <footer class = "page-footer">
-        <div class="footer-copyright text-center py-3">Copyright &copy; Liz Jones, Melissa Keller, Kyle Kracht & Vallie Tracy 2020</div>
+          <div class="footer-copyright text-center py-3">Copyright &copy; Liz Jones, Melissa Keller, Kyle Kracht & Vallie Tracy 2020</div>
         </footer>  
 
         <!-- bootstrap -->
@@ -58,7 +60,7 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
-        <script type="text/python" src="app.py"></script>
+        <!-- <script type="text/python" src="counties_app.py"></script> -->
 
     </body>
 </html>
