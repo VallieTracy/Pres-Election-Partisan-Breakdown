@@ -15,7 +15,7 @@ with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-c
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets, requests_pathname_prefix = '/counties/', serve_locally = False)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, requests_pathname_prefix = '/precinct/', serve_locally = False)
 
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
@@ -26,7 +26,7 @@ df2016 = countiesDF[(countiesDF["year"]==2016)]
 df2016 = df2016.groupby(df2016["FIPS"], as_index = False).sum()
 
 fig = px.choropleth_mapbox(df2016, geojson=counties, locations='FIPS', color='totalvotes',
-                        color_continuous_scale="Viridis",
+                        color_continuous_scale="Bluered_r",
                         range_color=(0, 300000),
                         mapbox_style="carto-positron",
                         zoom=3, center = {"lat": 37.0902, "lon": -95.7129},
@@ -38,7 +38,7 @@ fig.show()
 app.layout = html.Div(children=[
 
     dcc.Graph(
-        id='counties-graph',
+        id='precinct-graph',
         figure=fig
     )
 ])
