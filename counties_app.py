@@ -23,7 +23,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets, requests_pa
 countiesDF = pd.read_csv("Resources/countypres_2000-2016.csv")
 
 df2016 = countiesDF[(countiesDF["year"]==2016)]
-df2016 = df2016.groupby(df2016["FIPS"], as_index = False).sum()
+df2016 = df2016.groupby(['FIPS', 'county'], as_index = False).sum()
 
 fig = px.choropleth_mapbox(df2016, geojson=counties, locations='FIPS', color='totalvotes',
                         color_continuous_scale="Viridis",
@@ -33,8 +33,7 @@ fig = px.choropleth_mapbox(df2016, geojson=counties, locations='FIPS', color='to
                         opacity=0.5,
                         labels={'Total Votes':'totalvotes'}
                         )
-fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-fig.show()
+#fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 app.layout = html.Div(children=[
 
     dcc.Graph(
@@ -44,4 +43,4 @@ app.layout = html.Div(children=[
 ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True, user_reloader=False)
+    app.run_server(debug=True)
