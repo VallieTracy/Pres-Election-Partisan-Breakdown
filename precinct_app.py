@@ -44,34 +44,18 @@ fig = px.choropleth_mapbox(test_df, geojson=precincts, locations='new_prec', fea
                         zoom=5, center = {"lat": 46.7296, "lon": -94.6859},
                         opacity=0.5,
                         labels={'Total Votes':'votes'}
+                        
                         )
-fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-fig.show()
+#fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 app.layout = html.Div(children=[
 
     dcc.Graph(
         id='precinct-graph',
+
         figure=fig
     )
 ])
 
-# prec_df = pd.read_csv(csvpath, encoding="ISO-8859-1")
-# mn_prec_df = prec_df.loc[prec_df['state'] == 'Minnesota']
-# fig = px.scatter_mapbox(mn_prec_df, lat="county_lat", lon="county_long", hover_name="county_name", hover_data=["state", "precinct"],
-#                         color_discrete_sequence=["fuchsia"], zoom=5, height=300)
-# fig.update_layout(
-#     mapbox_style="white-bg",
-#     mapbox_layers=[
-#         {
-#             "below": 'traces',
-#             "sourcetype": "raster",
-#             "source": [
-#                 "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
-#             ]
-#         }
-#       ])
-# fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-# fig.show()
 
 if __name__ == '__main__':
-    app.run_server(debug=True, use_reloader=False)
+    app.run_server(debug=True)
