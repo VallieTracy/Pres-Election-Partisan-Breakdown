@@ -16,13 +16,14 @@
     border-top: 50px;
 }
 
-#map{
-    font-weight: 900;
-}
 
 .row {
     margin: 10px;
 }
 .container{
     margin-bottom: 100px;
+}
+
+iframe {
+    height: 100%;
 }
