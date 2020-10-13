@@ -24,6 +24,13 @@
     margin-bottom: 100px;
 }
 
-iframe {
-    height: 100%;
+/* 
+.mapContainer {
+    width: 100%;
+    height: 800px;
+} */
+
+.mapContainer iframe {
+    width: 100%;
+    height: 800px;
 }
