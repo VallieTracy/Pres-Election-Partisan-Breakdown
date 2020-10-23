@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang = "en">
-    <head>
-        <meta charset = "UTF-8">
-       <!-- Bootstrap -->
-       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="../assets/style.css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <link rel="icon" type="image/png" href="../images/usa.png"/>   
-      </head>
-    <body>
+  <head>
+      <meta charset = "UTF-8">
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <!-- CSS -->
+      <link rel="stylesheet" type="text/css" href="../assets/style.css"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+      <link rel="icon" type="image/png" href="../images/usa.png"/>   
+    </head>
+  <body>
 
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -32,25 +32,18 @@
         </div>
       </nav>
 
-        
 
-
-      
-      <!-- Body -->
-      <div class = "container">
-          <div class = "row">
-              <div class = "col-md-12">
-                    <!-- Calls precinct map from precinct_app.py -->
-                <iframe src="http://127.0.0.1:8050/precinct/" id="map"></iframe>
-              </div>
-          </div>
+      <!-- Map -->
+      <div class="mapContainer">
+        <iframe src="http://127.0.0.1:8050/precinct/"></iframe>
       </div>
+
 
       <!-- Footer Section.-->
       <footer class = "page-footer">
         <div class="footer-copyright text-center py-3">Copyright &copy; Liz Jones, Melissa Keller, Kyle Kracht & Vallie Tracy 2020</div>
       </footer>  
-      
+        
       <!-- bootstrap -->
 
       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -64,5 +57,5 @@
       crossorigin="anonymous"></script>
 
 
-    </body>
+  </body>
 </html>

@@ -24,13 +24,12 @@
     margin-bottom: 100px;
 }
 
-/* 
-.mapContainer {
-    width: 100%;
-    height: 800px;
-} */
-
 .mapContainer iframe {
     width: 100%;
     height: 800px;
+    
+} 
+
+.js-plotly-plot .plotly, .js-plotly-plot .plotly{
+    height: 550px;
 }
