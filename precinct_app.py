@@ -57,8 +57,8 @@ app.layout = html.Div(children=[
     ),
 
     dcc.Graph(
-        id='precinct-graph',
-
+        # id='precinct-graph',
+        id="mapContainer",
         figure=fig
     )
 ])

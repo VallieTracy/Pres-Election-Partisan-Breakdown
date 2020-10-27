@@ -42,7 +42,8 @@ app.layout = html.Div(children=[
     ),
 
     dcc.Graph(
-        id='counties-graph',
+        # id='counties-graph',
+        id="mapContainer",
         figure=fig
     )
 ])
