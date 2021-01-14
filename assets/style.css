@@ -16,13 +16,21 @@
     border-top: 50px;
 }
 
-#map{
-    font-weight: 900;
-}
 
 .row {
     margin: 10px;
 }
 .container{
     margin-bottom: 100px;
+}
+
+
+#mapContainer iframe {
+    width: 100%;
+    height: 800px;
+    
+} 
+
+#mapContainer{
+    height: 550px;
 }

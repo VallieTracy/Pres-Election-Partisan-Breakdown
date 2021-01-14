@@ -15,7 +15,8 @@ with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-c
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets, requests_pathname_prefix = '/counties/', serve_locally = False)
+app = dash.Dash(__name__, requests_pathname_prefix = '/counties/', serve_locally = False)
+
 
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
@@ -33,11 +34,16 @@ fig = px.choropleth_mapbox(df2016, geojson=counties, locations='FIPS', color='to
                         opacity=0.5,
                         labels={'Total Votes':'totalvotes'}
                         )
-#fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 app.layout = html.Div(children=[
+       html.Link(
+        rel='stylesheet',
+        href='/assets/style.css'
+    ),
 
     dcc.Graph(
-        id='counties-graph',
+        # id='counties-graph',
+        id="mapContainer",
         figure=fig
     )
 ])
