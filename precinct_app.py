@@ -44,7 +44,7 @@ fig = px.choropleth_mapbox(test_df, geojson=precincts, locations='new_prec', fea
                         color_continuous_scale="Bluered_r",
                         range_color=(0, 300000),
                         mapbox_style="carto-positron",
-                        zoom=5, center = {"lat": 46.7296, "lon": -94.6859},
+                        zoom=4, center = {"lat": 46.7296, "lon": -94.6859},
                         opacity=0.5,
                         labels={'Total Votes':'votes'}
                         
@@ -57,8 +57,8 @@ app.layout = html.Div(children=[
     ),
 
     dcc.Graph(
-        # id='precinct-graph',
-        id="mapContainer",
+        id='precinct-graph',
+
         figure=fig
     )
 ])

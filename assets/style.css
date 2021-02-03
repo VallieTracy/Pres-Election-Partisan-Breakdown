@@ -31,6 +31,24 @@
     
 } 
 
-#mapContainer{
+/* #mapContainer{
     height: 550px;
+    margin-left: 0px;
+    margin-top: 0px;
+} */
+
+#precinct-graph iframe{
+    width: 100%;
+    height: 800px;
+}
+/* 
+#precinct-graph{
+    height: 550px;
+    margin-left: 0px;
+    margin-top: 0px;
+} */
+
+.plotly-container .mapboxgl-map{
+    left: 0px;
+    top: 0px;
 }
