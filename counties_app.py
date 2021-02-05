@@ -32,7 +32,7 @@ fips = df2016_reps["FIPS"]
 values = df2016_reps["percent"]
 valuesPop = df2016_reps["totalvotes"]
 
-endptsPop = list(np.mgrid[min(valuesPop):max(valuesPop):6j])  # Do we need this?
+#endptsPop = list(np.mgrid[min(valuesPop):max(valuesPop):6j])  # Do we need this?
 
 colorscale = [ 'hsl(240,50%,50%)', 'hsl(300,50%,50%)','hsl(0,50%,50%)',\
              
@@ -61,13 +61,10 @@ def combined_rank(row):
     return row["pop_rank"]*100+row["pct_rank"]
 
 df2016_reps["pct_rank"] = df2016_reps.apply (lambda row: label_pct(row), axis=1)
-
 df2016_reps["pop_rank"] = pd.qcut(df2016_reps["totalvotes"], q=[0, .25, .5, .75, 1],labels =[1,2,3,4] )
-d#f2016_reps['pop_rank'] = df2016_reps['pop_rank'].astype(int)
-
 df2016_reps["combined_rank"] = df2016_reps.apply (lambda row: combined_rank(row), axis=1)
 
-fig = px.choropleth_mapbox(df2016_reps, geojson=counties, locations='FIPS', color='totalvotes',
+fig = px.choropleth_mapbox(df2016_reps, geojson=counties, locations='FIPS', color='combined_rank',
                         color_continuous_scale=colorscale,
                         range_color=(0, 300000),
                         mapbox_style="carto-positron",
@@ -88,37 +85,6 @@ app.layout = html.Div(children=[
         figure=fig
     )
 ])
-
-#######################
-# The below code doesn't not work, so I'm leaving it to reference back to as I embarque
-# on testing out the new stuff.
-
-# countiesDF = pd.read_csv("Resources/countypres_2000-2016.csv")
-
-# df2016 = countiesDF[(countiesDF["year"]==2016)]
-# df2016 = df2016.groupby(['FIPS', 'county'], as_index = False).sum()
-
-# fig = px.choropleth_mapbox(df2016, geojson=counties, locations='FIPS', color='totalvotes',
-#                         color_continuous_scale="Viridis",
-#                         range_color=(0, 300000),
-#                         mapbox_style="carto-positron",
-#                         zoom=3, center = {"lat": 37.0902, "lon": -95.7129},
-#                         opacity=0.5,
-#                         labels={'Total Votes':'totalvotes'}
-#                         )
-# fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-# app.layout = html.Div(children=[
-#        html.Link(
-#         rel='stylesheet',
-#         href='/assets/style.css'
-#     ),
-
-#     dcc.Graph(
-#         # id='counties-graph',
-#         id="mapContainer",
-#         figure=fig
-#     )
-# ])
 
 if __name__ == '__main__':
     app.run_server(debug=True)
