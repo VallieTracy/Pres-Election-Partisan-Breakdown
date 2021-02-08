@@ -28,6 +28,19 @@ df2016 = countiesDF[(countiesDF["year"] == 2016)]
 df2016_reps = df2016[(df2016["party"]) == "republican"]
 df2016_reps["percent"] = df2016_reps["candidatevotes"] / df2016["totalvotes"]
 
+df2016_reps = df2016_reps.dropna(subset = ["FIPS"])
+df2016_reps["FIPS"] = df2016_reps["FIPS"].astype(np.int64)
+df2016_reps["FIPS"] = df2016_reps["FIPS"].astype(str)
+
+i = 0
+while i < len(df2016_reps.index):
+
+    if len(df2016_reps.iloc[i,4])<=4:
+        df2016_reps.iloc[i,4] = "0" + df2016_reps.iloc[i,4]
+        i+=1
+    else:
+        i+=1
+
 fips = df2016_reps["FIPS"]
 values = df2016_reps["percent"]
 valuesPop = df2016_reps["totalvotes"]
@@ -43,6 +56,10 @@ colorscale = [ 'hsl(240,50%,50%)', 'hsl(300,50%,50%)','hsl(0,50%,50%)',\
               'hsl(240,95%,50%)', 'hsl(300,95%,50%)','hsl(0,95%,50%)'
              ]
 
+
+# instead of doing all this in here, and even the trimming the dataframe down to reps
+# and year 2016, should we do that all in JN and then export to csv, and then this file
+# uses that cleaned up CSV, to save processing time on this?
 def label_pct(row):
     if row["percent"] <= .20:
         return 2
@@ -66,12 +83,13 @@ df2016_reps["combined_rank"] = df2016_reps.apply (lambda row: combined_rank(row)
 
 fig = px.choropleth_mapbox(df2016_reps, geojson=counties, locations='FIPS', color='combined_rank',
                         color_continuous_scale=colorscale,
-                        range_color=(0, 300000),
+                        range_color=(0, 600), #What number are the color ranks out of?
                         mapbox_style="carto-positron",
                         zoom=3, center = {"lat": 37.0902, "lon": -95.7129},
                         opacity=0.5,
-                        labels={'Total Votes':'totalvotes'}
+                        #labels={'totalvotes':'Total Votes'}
                         )
+                        
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 app.layout = html.Div(children=[
        html.Link(
