@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 from urllib.request import urlopen
 import json
-
+#import plotly.figure_factory as ff
 
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
     counties = json.load(response)
@@ -47,28 +47,26 @@ valuesPop = df2016_reps["totalvotes"]
 
 #endptsPop = list(np.mgrid[min(valuesPop):max(valuesPop):6j])  # Do we need this?
 
-colorscale = [ 'hsl(240,50%,50%)', 'hsl(300,50%,50%)','hsl(0,50%,50%)',\
+colorscale = { '104' : 'hsl(240,50%,50%)', '106': 'hsl(300,50%,50%)', '110': 'hsl(0,50%,50%)',
              
-             'hsl(240,65%,50%)', 'hsl(300,65%,50%)','hsl(0,65%,50%)',\
+             '204': 'hsl(240,65%,50%)', '206': 'hsl(300,65%,50%)', '210': 'hsl(0,65%,50%)',
               
-             'hsl(240,80%,50%)', 'hsl(300,80%,50%)','hsl(0,80%,50%)',\
+             '304': 'hsl(240,80%,50%)', '306': 'hsl(300,80%,50%)', '310': 'hsl(0,80%,50%)',
 
-              'hsl(240,95%,50%)', 'hsl(300,95%,50%)','hsl(0,95%,50%)'
-             ]
+              '404': 'hsl(240,95%,50%)', '406': 'hsl(300,95%,50%)', '410': 'hsl(0,95%,50%)'
+}
 
 
 # instead of doing all this in here, and even the trimming the dataframe down to reps
 # and year 2016, should we do that all in JN and then export to csv, and then this file
 # uses that cleaned up CSV, to save processing time on this?
 def label_pct(row):
-    if row["percent"] <= .20:
-        return 2
     if row["percent"] <= .40:
         return 4
+
     if row["percent"] <= .60:
         return 6
-    if row["percent"] <= .80:
-        return 8
+
     return 10
 
 def pop_rank(row):
@@ -81,12 +79,14 @@ df2016_reps["pct_rank"] = df2016_reps.apply (lambda row: label_pct(row), axis=1)
 df2016_reps["pop_rank"] = pd.qcut(df2016_reps["totalvotes"], q=[0, .25, .5, .75, 1],labels =[1,2,3,4] )
 df2016_reps["combined_rank"] = df2016_reps.apply (lambda row: combined_rank(row), axis=1)
 
+df2016_reps["combined_rank"] = df2016_reps["combined_rank"].astype(str)
+
 fig = px.choropleth_mapbox(df2016_reps, geojson=counties, locations='FIPS', color='combined_rank',
-                        color_continuous_scale=colorscale,
-                        range_color=(0, 600), #What number are the color ranks out of?
+                        color_discrete_map = colorscale,
                         mapbox_style="carto-positron",
-                        zoom=3, center = {"lat": 37.0902, "lon": -95.7129},
-                        opacity=0.5,
+                        zoom=3.25, center = {"lat": 37.0902, "lon": -95.7129},
+
+                        opacity=1,
                         #labels={'totalvotes':'Total Votes'}
                         )
                         
