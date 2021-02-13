@@ -41,21 +41,15 @@ while i < len(df2016_reps.index):
     else:
         i+=1
 
-fips = df2016_reps["FIPS"]
-values = df2016_reps["percent"]
-valuesPop = df2016_reps["totalvotes"]
+# fips = df2016_reps["FIPS"]
+# values = df2016_reps["percent"]
+# valuesPop = df2016_reps["totalvotes"]
 
-#endptsPop = list(np.mgrid[min(valuesPop):max(valuesPop):6j])  # Do we need this?
-
-colorscale = { '104' : 'hsl(240,50%,50%)', '106': 'hsl(300,50%,50%)', '110': 'hsl(0,50%,50%)',
-             
+colorscale = {'104' : 'hsl(240,50%,50%)', '106': 'hsl(300,50%,50%)', '110': 'hsl(0,50%,50%)',
              '204': 'hsl(240,65%,50%)', '206': 'hsl(300,65%,50%)', '210': 'hsl(0,65%,50%)',
-              
              '304': 'hsl(240,80%,50%)', '306': 'hsl(300,80%,50%)', '310': 'hsl(0,80%,50%)',
-
-              '404': 'hsl(240,95%,50%)', '406': 'hsl(300,95%,50%)', '410': 'hsl(0,95%,50%)'
+             '404': 'hsl(240,95%,50%)', '406': 'hsl(300,95%,50%)', '410': 'hsl(0,95%,50%)'
 }
-
 
 # instead of doing all this in here, and even the trimming the dataframe down to reps
 # and year 2016, should we do that all in JN and then export to csv, and then this file

@@ -1,5 +1,6 @@
 # Run this app with `python app.py` and
 # visit http://127.0.0.1:8050/ in your web browser.
+from counties_app import label_pct, pop_rank, combined_rank, colorscale
 
 import dash
 import dash_core_components as dcc
@@ -23,29 +24,29 @@ app = dash.Dash(__name__, requests_pathname_prefix = '/precinct/', serve_locally
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
 
-# Set file path
-csvpath = "Resources/2016-precinct-president.csv"
-
-# Read csv and setup the dataframe
+csvpath = "Resources/2016_precincts_newVersion.csv"
 prec_df = pd.read_csv(csvpath, encoding="ISO-8859-1")
-mn_prec_df = prec_df.loc[prec_df['state'] == 'Minnesota']
-mn_prec_df = mn_prec_df[["precinct", "votes"]]
-mn_prec_df = mn_prec_df.groupby(mn_prec_df["precinct"], as_index=False).sum()
 
-split_prec = mn_prec_df["precinct"].str.split("|", expand=True)
-mn_prec_df["new_prec"] = split_prec[0]
-mn_prec_df["new_prec"] = mn_prec_df["new_prec"].str.title()
+prec_df = prec_df[['VTDID', 'PCTNAME', 'PCTCODE', 'MCDNAME', 'COUNTYNAME', 'COUNTYCODE',
+                   'USPRSR', 'USPRSDFL', 'USPRSTOTAL']][:-1]
+
+prec_df = prec_df.rename(columns = {'MCDNAME': 'Munic/Unorg Terr Name',
+                                    'USPRSR': 'Trump', 'USPRSDFL': 'Clinton',
+                                    'USPRSTOTAL': 'Total Votes'})
+
+prec_df['percent'] = prec_df['Trump'] / prec_df['Total Votes']
 
 
-test_csv = "test_precinct.csv"
-test_df = pd.read_csv(test_csv)
+prec_df["pct_rank"] = prec_df.apply (lambda row: label_pct(row), axis=1)
+prec_df["pop_rank"] = pd.qcut(prec_df["Total Votes"], q=[0, .25, .5, .75, 1],labels =[1,2,3,4] )
+prec_df["combined_rank"] = prec_df.apply (lambda row: combined_rank(row), axis=1)
+prec_df["combined_rank"] = prec_df["combined_rank"].astype(str)
 
-fig = px.choropleth_mapbox(test_df, geojson=precincts, locations='new_prec', featureidkey = "properties.Precinct", color='votes',
-                        color_continuous_scale="Bluered_r",
-                        range_color=(0, 300000),
+fig = px.choropleth_mapbox(prec_df, geojson=precincts, locations='VTDID', featureidkey = "properties.PrecinctID", color='combined_rank',
+                        color_discrete_map = colorscale,
                         mapbox_style="carto-positron",
                         zoom=4, center = {"lat": 46.7296, "lon": -94.6859},
-                        opacity=0.5,
+                        opacity=1,
                         labels={'Total Votes':'votes'}
                         
                         )
