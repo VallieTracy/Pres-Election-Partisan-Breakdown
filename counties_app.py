@@ -21,20 +21,20 @@ app = dash.Dash(__name__, requests_pathname_prefix = '/counties/', serve_locally
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
 
-df2016_reps = pd.read_csv("Resources/usa_counties.csv")
+df2016_reps = pd.read_csv("Resources/usa_counties.csv", dtype = {"FIPS": object})
 
-df2016_reps["FIPS"] = df2016_reps["FIPS"].astype(np.int64)
-df2016_reps["FIPS"] = df2016_reps["FIPS"].astype(str)
+# df2016_reps["FIPS"] = df2016_reps["FIPS"].astype(np.int64)
+# df2016_reps["FIPS"] = df2016_reps["FIPS"].astype(str)
 
-i = 0
-while i < len(df2016_reps.index):
+# i = 0
+# while i < len(df2016_reps.index):
 
-    if len(df2016_reps.iloc[i,4])<=4:
-        df2016_reps.iloc[i,4] = "0" + df2016_reps.iloc[i,4]
-        #print(df2016_reps.iloc[i,4])
-        i+=1
-    else:
-        i+=1
+#     if len(df2016_reps.iloc[i,4])<=4:
+#         df2016_reps.iloc[i,4] = "0" + df2016_reps.iloc[i,4]
+#         #print(df2016_reps.iloc[i,4])
+#         i+=1
+#     else:
+#         i+=1
 
 
 colorscale = {'104' : 'hsl(240,50%,50%)', '106': 'hsl(300,50%,50%)', '110': 'hsl(0,50%,50%)',
