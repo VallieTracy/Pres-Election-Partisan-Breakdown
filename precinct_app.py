@@ -19,22 +19,24 @@ stylesheet = [{"href": "/static/css/style.css",
                 'rel': 'stylesheet'}]
 
 app = dash.Dash(__name__, requests_pathname_prefix = '/precinct/', serve_locally = False)
-# external_stylesheets= stylesheet, 
 
-# assume you have a "long-form" data frame
-# see https://plotly.com/python/px-arguments/ for more options
 
-prec_df = pd.read_csv("Resources/mn_precincts.csv")
-prec_df["combined_rank"] = prec_df["combined_rank"].astype(str)
+prec_df = pd.read_csv("Resources/mn_precincts.csv", dtype =  {"combined_rank": object})
+#prec_df["combined_rank"] = prec_df["combined_rank"].astype(str)
 
-fig = px.choropleth_mapbox(prec_df, geojson=precincts, locations='VTDID', featureidkey = "properties.PrecinctID", color='combined_rank',
-                        color_discrete_map = colorscale,
-                        mapbox_style="carto-positron",
-                        zoom=5, center = {"lat": 46.7296, "lon": -94.6859},
-                        opacity=1,
-                        labels={'Total Votes':'votes'}
+# fig = px.choropleth_mapbox(prec_df, geojson=precincts, locations='VTDID', featureidkey = "properties.PrecinctID", color='combined_rank',
+#                         color_discrete_map = colorscale,
+#                         mapbox_style="carto-positron",
+#                         zoom=5, center = {"lat": 46.7296, "lon": -94.6859},
+#                         opacity=1,
+#                         labels={'Total Votes':'votes'}
                         
-                        )
+#                         )
+
+fig = px.choropleth(prec_df, geojson = precincts, locations = 'VTDID', featureidkey = "properties.PrecinctID", color = 'combined_rank', 
+                    color_discrete_map = colorscale, hover_name = 'PCTNAME'
+                    )
+
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 app.layout = html.Div(children=[
     html.Link(

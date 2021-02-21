@@ -18,23 +18,7 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, requests_pathname_prefix = '/counties/', serve_locally = False)
 
 
-# assume you have a "long-form" data frame
-# see https://plotly.com/python/px-arguments/ for more options
-
-df2016_reps = pd.read_csv("Resources/usa_counties.csv", dtype = {"FIPS": object})
-
-# df2016_reps["FIPS"] = df2016_reps["FIPS"].astype(np.int64)
-# df2016_reps["FIPS"] = df2016_reps["FIPS"].astype(str)
-
-# i = 0
-# while i < len(df2016_reps.index):
-
-#     if len(df2016_reps.iloc[i,4])<=4:
-#         df2016_reps.iloc[i,4] = "0" + df2016_reps.iloc[i,4]
-#         #print(df2016_reps.iloc[i,4])
-#         i+=1
-#     else:
-#         i+=1
+df2016_reps = pd.read_csv("Resources/usa_counties.csv", dtype = {"FIPS": object, "combined_rank": object})
 
 
 colorscale = {'104' : 'hsl(240,50%,50%)', '106': 'hsl(300,50%,50%)', '110': 'hsl(0,50%,50%)',
@@ -49,19 +33,23 @@ legend_names = {'104' : 'Low Pop, Low Rep', '106': 'Low Pop, Med Rep', '110': 'L
              '404': 'High Pop, Low Rep', '406': 'High Pop, Med Rep', '410': 'High Pop, High Rep'
 }
 
-df2016_reps["combined_rank"] = df2016_reps["combined_rank"].astype(str)
+#df2016_reps["combined_rank"] = df2016_reps["combined_rank"].astype(str)
 
-fig = px.choropleth_mapbox(df2016_reps, geojson=counties, locations='FIPS', color='combined_rank',
-                        color_discrete_map = colorscale,
-                        mapbox_style="carto-positron",
-                        zoom=3.25, center = {"lat": 37.0902, "lon": -95.7129},
+# fig = px.choropleth_mapbox(df2016_reps, geojson=counties, locations='FIPS', color='combined_rank',
+#                         color_discrete_map = colorscale,
+#                         mapbox_style="carto-positron",
+#                         zoom=3.25, center = {"lat": 37.0902, "lon": -95.7129},
 
-                        opacity=1,
-                        labels={'totalvotes':'Total Votes', 'percent': "Precent"}
-                        )
+#                         opacity=1,
+#                         hover_name = "county",
+#                         labels={'test':444}
+#                         )
 
+fig = px.choropleth(df2016_reps, geojson = counties, locations = 'FIPS', color = 'combined_rank', 
+                    color_discrete_map = colorscale, scope = 'usa', hover_name = 'county'
+                    )
 
-fig.update_traces(selector = legend_names)
+#fig.update_traces(selector = legend_names)
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 app.layout = html.Div(children=[
        html.Link(
