@@ -15,29 +15,21 @@ with urlopen('https://www.sos.state.mn.us/media/2791/mn-precincts.json') as resp
     precincts = json.load(response)
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-stylesheet = [{"href": "/static/css/style.css",
+stylesheet = [{'href': '/static/css/style.css',
                 'rel': 'stylesheet'}]
 
 app = dash.Dash(__name__, requests_pathname_prefix = '/precinct/', serve_locally = False)
 
 
-prec_df = pd.read_csv("Resources/mn_precincts.csv", dtype =  {"combined_rank": object})
-#prec_df["combined_rank"] = prec_df["combined_rank"].astype(str)
+prec_df = pd.read_csv('Resources/mn_precincts.csv', dtype =  {'combined_rank': object})
 
-# fig = px.choropleth_mapbox(prec_df, geojson=precincts, locations='VTDID', featureidkey = "properties.PrecinctID", color='combined_rank',
-#                         color_discrete_map = colorscale,
-#                         mapbox_style="carto-positron",
-#                         zoom=5, center = {"lat": 46.7296, "lon": -94.6859},
-#                         opacity=1,
-#                         labels={'Total Votes':'votes'}
-                        
-#                         )
+fig = px.choropleth_mapbox(prec_df, geojson=precincts, locations='VTDID', featureidkey = 'properties.PrecinctID', color='combined_rank',
+                        color_discrete_map = colorscale,
+                        mapbox_style="carto-positron",
+                        zoom=5, center = {'lat': 46.7296, 'lon': -94.6859}
+                        )
 
-fig = px.choropleth(prec_df, geojson = precincts, locations = 'VTDID', featureidkey = "properties.PrecinctID", color = 'combined_rank', 
-                    color_discrete_map = colorscale, hover_name = 'PCTNAME'
-                    )
-
-fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+fig.update_layout(margin={'r':0,'t':0,'l':0,'b':0})
 app.layout = html.Div(children=[
     html.Link(
         rel='stylesheet',
