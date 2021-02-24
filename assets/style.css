@@ -27,8 +27,8 @@
 
 #mapContainer iframe {
     width: 100%;
-    height: 800px;
-    
+    height: 66vh;
+    border: solid 3px black;    
 } 
 
 /* #mapContainer{
