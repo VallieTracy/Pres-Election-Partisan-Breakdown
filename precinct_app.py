@@ -14,8 +14,11 @@ with urlopen('https://www.sos.state.mn.us/media/2791/mn-precincts.json') as resp
     precincts = json.load(response)
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+stylesheet = [{"href": "/static/css/style.css",
+                'rel': 'stylesheet'}]
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets, requests_pathname_prefix = '/precinct/', serve_locally = False)
+app = dash.Dash(__name__, requests_pathname_prefix = '/precinct/', serve_locally = False)
+# external_stylesheets= stylesheet, 
 
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
@@ -41,13 +44,17 @@ fig = px.choropleth_mapbox(test_df, geojson=precincts, locations='new_prec', fea
                         color_continuous_scale="Bluered_r",
                         range_color=(0, 300000),
                         mapbox_style="carto-positron",
-                        zoom=5, center = {"lat": 46.7296, "lon": -94.6859},
+                        zoom=4, center = {"lat": 46.7296, "lon": -94.6859},
                         opacity=0.5,
                         labels={'Total Votes':'votes'}
                         
                         )
 #fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 app.layout = html.Div(children=[
+    html.Link(
+        rel='stylesheet',
+        href='/assets/style.css'
+    ),
 
     dcc.Graph(
         id='precinct-graph',
