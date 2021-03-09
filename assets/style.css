@@ -18,7 +18,7 @@
 
 
 .row {
-    margin: 10px;
+    margin: 0px;
 }
 .container{
     margin-bottom: 100px;
@@ -30,6 +30,26 @@
     height: 66vh;
     border: solid 3px black;    
 } 
+
+.color-404 {
+    background-color: hsl(240,95%,50%);   
+}
+
+.color-304 {
+    background-color: hsl(240,80%,50%);
+}
+
+.color-204 {
+    background-color: hsl(240,65%,50%);
+}
+
+.color-104 {
+    background-color: hsl(240,50%,50%);
+}
+
+#color-bar {
+    height: 20px;
+}
 
 /* #mapContainer{
     height: 550px;
