@@ -48,7 +48,8 @@
 }
 
 #color-bar {
-    height: 20px;
+    height: 25px;
+    border: 1px solid white;
 }
 
 /* #mapContainer{
