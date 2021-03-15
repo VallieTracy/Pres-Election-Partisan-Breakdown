@@ -47,6 +47,38 @@
     background-color: hsl(240,50%,50%);
 }
 
+.color-410 {
+    background-color: hsl(0,95%,50%);
+}
+
+.color-310 {
+    background-color: hsl(0,80%,50%);
+}
+
+.color-210 {
+    background-color: hsl(0,65%,50%);
+}
+
+.color-110 {
+    background-color: hsl(0,50%,50%);
+}
+
+.color-406 {
+    background-color: hsl(300,95%,50%);
+}
+
+.color-306 {
+    background-color: hsl(300,80%,50%);
+}
+
+.color-206 {
+    background-color: hsl(300,65%,50%);
+}
+
+.color-106 {
+    background-color: hsl(300,50%,50%);
+}
+
 #color-bar {
     height: 25px;
     border: 1px solid white;
