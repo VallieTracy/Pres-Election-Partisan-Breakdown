@@ -28,4 +28,4 @@ MN precinct shapefiles: https://www.sos.state.mn.us/election-administration-camp
 US Voting Data: https://electionlab.mit.edu/data    
 
 Home Screen:
-![us_choro](/images/us_choro.PNG) 
+![us_choro2](images/us_choro2.PNG) 
