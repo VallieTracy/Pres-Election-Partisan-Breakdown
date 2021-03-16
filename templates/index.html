@@ -40,17 +40,28 @@
       <iframe src="http://127.0.0.1:8050/counties/"></iframe>
     </div>
 
-    <div class = "row border border-dark">
-      <div class = "col-md-12 info">What you're looking at:</div>
+    <div class = "row">
+      <div class = "col-md-12 info"><u>color scale</u>:</div>
     </div>
-    <div class = "row border border-dark">
-      <div class = "col-md-12">Blue corresponds to Democrat and Red corresponds to Republican.
-                               Purple corresponds to a more evenly divided votes cast.
-                               We also factored population density into the color scale.
+    <div class = "row">
+      <div class = "col-md-12 inner-text">Vote distribution by percentage cast for the Republican candidate
       </div>
     </div>
+    
     <div class = "row col-md-12">
-      <div class = "col-md-4 border">
+      <div class = "col-md-4 perc-text">
+        <= 40%
+      </div>
+      <div class = "col-md-4 perc-text">
+        40% < Republican candidate vote <= 60%
+      </div>
+      <div class = "col-md-4 perc-text">
+        > 60%
+      </div>
+    </div>
+    
+    <div class = "row col-md-12">
+      <div class = "col-md-4">
         <div class = "row">
           <div class = "col-md-3 color-404" id = "color-bar"></div>
           <div class = "col-md-3 color-304" id = "color-bar"></div>
@@ -58,17 +69,60 @@
           <div class = "col-md-3 color-104" id = "color-bar"></div>
         </div>
       </div>
-      <div class = "col-md-4 border color-scale02"></div>
-      <div class = "col-md-4 border color-scale03"></div>
+      <div class = "col-md-4 color-scale02">
+        <div class = "row">
+          <div class = "col-md-3 color-406" id = "color-bar"></div>
+          <div class = "col-md-3 color-306" id = "color-bar"></div>
+          <div class = "col-md-3 color-206" id = "color-bar"></div>
+          <div class = "col-md-3 color-106" id = "color-bar"></div>
+        </div>
+      </div>
+      <div class = "col-md-4 color-scale03">
+        <div class = "row">
+          <div class = "col-md-3 color-410" id = "color-bar"></div>
+          <div class = "col-md-3 color-310" id = "color-bar"></div>
+          <div class = "col-md-3 color-210" id = "color-bar"></div>
+          <div class = "col-md-3 color-110" id = "color-bar"></div>
+        </div>
+      </div>
     </div>
-    
 
+    <div class = "row col-md-12">
+      <div class = "col-md-4">
+        <div class = "row">
+          <div class = "inner-bottom-25 inner-bottom">25%</div>
+          <div class = "inner-bottom-50 inner-bottom">50%</div>
+          <div class = "inner-bottom-75 inner-bottom">75%</div>
+        </div>
+      </div>
+      <div class = "col-md-4">
+        <div class = "row">
+          <div class = "inner-bottom-25 inner-bottom">25%</div>
+          <div class = "inner-bottom-50 inner-bottom">50%</div>
+          <div class = "inner-bottom-75 inner-bottom">75%</div>
+        </div>
+      </div>
+      <div class = "col-md-4">
+        <div class = "row">
+          <div class = "inner-bottom-25 inner-bottom">25%</div>
+          <div class = "inner-bottom-50 inner-bottom">50%</div>
+          <div class = "inner-bottom-75 inner-bottom">75%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class = "row" id = "xtra-space">
+      <div class = "col-md-12 dist-text">Distribution of total votes cast. Each county
+                              ranked in comparison against all counties, 
+                              country-wide. Broken down into 4 bins.
+      </div>
+    </div>
 
     <!-- Footer -->
-
     <footer class = "page-footer">
       <div class="footer-copyright text-center py-3">Copyright &copy; Liz Jones, Melissa Keller, Kyle Kracht & Vallie Tracy 2021</div>
-    </footer> 
+    </footer>
+    
 
 
     <!-- bootstrap -->
