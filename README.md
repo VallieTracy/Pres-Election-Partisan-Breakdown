@@ -1,5 +1,5 @@
-Home Screen:
 ![us_choro2](images/us_choro2.PNG)
+<i>Home Screen</i>
 
 
 # Election Breakdown     
