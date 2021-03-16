@@ -10,9 +10,20 @@ Given how politically fraught the U.S. currently feels, we wanted to explore jus
 * <b>Flask app</b> `flask_app.py` which is the basic router gets called in both the final `run.py` file and `wsgi.py` file
 * <b>Two Dash apps</b> (counties_app.py, precinct_app.py) which contain the code to create both the county and MN precinct maps.
 * Overall <b>run.py file</b> which calls the above three files.
-* <b>WSGI.py file</b>, which is Django's primary deployment platform.
+* <b>WSGI.py file</b>, which is Django's primary deployment platform.      
 
+## Clone and Run the Repo:
+1. Clone to your desktop
+2. Install Dash with the command `pip install dash==1.19.0` if you don't already have it installed in your virtual environment. (Dash is being updated regularly, so this might change as time goes on.  Website listed below).       
+3. Put your mouse over the folder where this repo is cloned on your computer, right click, click on 'Git Bash Here' to pull up the Git Bash terminal
+4. Move to the same level as run.py and type `python run.py` into the terminal 
+5. Then right-click on index.html and click Open.  The previous command (#4) takes a little time, so the map won't appear right away.
+6. Voila!
 
-https://public.opendatasoft.com/explore/dataset/us-county-boundaries/table/?refine.stusab=MN
+##### You'll notice various jupyter notebooks listed among our files.  This is where we did some pre-coding before putting it into the Flask/Dash framework.     
 
-https://docs.github.com/en/github/managing-large-files/versioning-large-files
+Dash website: https://dash.plotly.com/installation      
+MN precinct voting data: https://www.sos.state.mn.us/elections-voting/election-results/2016/2016-general-election-results/2016-precinct-results-spreadsheet/     
+MN precinct shapefiles: https://www.sos.state.mn.us/election-administration-campaigns/data-maps/voting-precincts/        
+US Voting Data: https://electionlab.mit.edu/data    
+US County shapefiles: https://public.opendatasoft.com/explore/dataset/us-county-boundaries/table/?refine.stusab=MN&disjunctive.statefp&disjunctive.countyfp&disjunctive.name&disjunctive.namelsad&disjunctive.stusab&disjunctive.state_name
