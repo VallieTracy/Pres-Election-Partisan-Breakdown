@@ -26,3 +26,6 @@ Dash website: https://dash.plotly.com/installation
 MN precinct voting data: https://www.sos.state.mn.us/elections-voting/election-results/2016/2016-general-election-results/2016-precinct-results-spreadsheet/     
 MN precinct shapefiles: https://www.sos.state.mn.us/election-administration-campaigns/data-maps/voting-precincts/        
 US Voting Data: https://electionlab.mit.edu/data    
+
+Home Screen:
+![us_choro](/images/us_choro.PNG) 
