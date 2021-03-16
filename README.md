@@ -1,5 +1,5 @@
 # Election Breakdown 
-#### <i>Looking at the 2016 Presidential Election voting breakdown, based on party-votes and county populations</i>
+#### <i>Looking at the 2016 Presidential Election voting breakdown, based on party-votes and total ballots cast.</i>
 
 https://public.opendatasoft.com/explore/dataset/us-county-boundaries/table/?refine.stusab=MN
 
